@@ -1,0 +1,74 @@
+﻿@model ProjeGBC.Models.Uye
+
+@{
+    ViewBag.Title = "UyeProfil";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div>
+
+    <hr />
+    <dl class="dl-horizontal col-md-8">
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Yetki.Yetki1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Yetki.Yetki1)
+        </dd>
+
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AdSoyad)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AdSoyad)
+        </dd>
+
+
+    </dl>
+
+    <div class="col-md-8 mt-5">
+        <div class="card" style="width: 25rem;">
+            <img class="card-img-top" src="@Model.Foto" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">@Model.KullaniciAdi</h5>
+                <p class="card-text">
+                    <h4>Son Eklediği Makaleler</h4>
+                    @foreach (var item in Model.Makales.OrderByDescending(m => m.MakaleId).Take(5))
+                    {
+                        <ul class="list-unstyled mb-0">
+                            <li><a href="/Home/MakaleDetay/@item.MakaleId">@item.Baslik</a></li>
+                        </ul>
+                    }
+                </p>
+
+            </div>
+        </div>
+    </div>
+
+    @*<div class="col-md-8 mt-5">
+            <h4>Son Eklediği Makaleler</h4>
+            @foreach (var item in Model.Makales.OrderByDescending(m => m.MakaleId).Take(5))
+            {
+                <ul class="list-unstyled mb-0">
+                    <li><a href="/Home/MakaleDetay/@item.MakaleId">@item.Baslik</a></li>
+                </ul>
+            }
+        </div>*@
+
+</div>
